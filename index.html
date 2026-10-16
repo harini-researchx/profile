@@ -8,7 +8,7 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
+   
   gtag('config', 'G-SZVBEQBW23');
 </script>
 <meta charset="utf-8"/>
@@ -800,6 +800,14 @@ const POSTS = [
     url:'https://www.linkedin.com/posts/harini-ga_for-decades-computing-improved-by-making-share-7515363292744224768-aHqS/?utm_source=share&utm_medium=member_desktop&rcm=ACoAADlHtDUBz3PnJ41oYbbOFTThCIuA9ODj8K0',
     type:'LinkedIn post'
   }
+  ,
+{
+  title: 'Short Trends in India\'s Power Equipment Industry',
+  category: 'Power Infrastructure',
+  description: 'HVDC Infra Bottleneck and Low Loss Distribution',
+  url: 'https://www.linkedin.com/posts/harini-ga_indias-power-equipment-industry-is-seeing-share-7516733084688605184-eU4U/?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAADlHtDUBz3PnJ41oYbbOFTThCIuA9ODj8K0',
+  type: 'LinkedIn post'
+}
   /* EXAMPLE — duplicate this object after a comma to add another post:
   ,{
     title:'Your next article title',
@@ -833,7 +841,24 @@ themeToggle.addEventListener('click',()=>{root.dataset.theme=root.dataset.theme=
 const nav=document.getElementById('navlinks');const menu=document.getElementById('menuToggle');
 menu.addEventListener('click',()=>{const opened=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(opened));menu.textContent=opened?'×':'☰'});
 nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='☰'}));
-if('IntersectionObserver' in window){const observer=new IntersectionObserver(items=>{items.forEach(item=>{if(item.isIntersecting){item.target.classList.add('visible');observer.unobserve(item.target)}})},{threshold:.05});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))}else document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'));
+
+const revealElements = document.querySelectorAll('.reveal');
+
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05 });
+
+  revealElements.forEach((element) => observer.observe(element));
+} else {
+  revealElements.forEach((element) => element.classList.add('visible'));
+}
+  
 const progress=document.getElementById('progress');let updating=false;
 function paintProgress(){const maximum=document.documentElement.scrollHeight-innerHeight;progress.style.width=(maximum>0?scrollY/maximum*100:0)+'%';updating=false}
 window.addEventListener('scroll',()=>{if(!updating){requestAnimationFrame(paintProgress);updating=true}},{passive:true});paintProgress();
