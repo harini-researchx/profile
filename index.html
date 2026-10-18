@@ -988,5 +988,100 @@ if (window.matchMedia('(hover:hover) and (pointer:fine) and (prefers-reduced-mot
 })();
 </script>
 
+<script>
+window.addEventListener('DOMContentLoaded', function () {
+  const section = document.getElementById('writing');
+  if (!section) return;
+
+  section.querySelectorAll('.reveal').forEach(el => {
+    el.classList.add('visible');
+    el.style.opacity = '1';
+    el.style.visibility = 'visible';
+  });
+
+  const list = document.getElementById('postList');
+  if (!list || list.children.length > 0) return;
+
+  const posts = [
+    {
+      title: 'Alternative Computing Architectures',
+      category: 'Computing & Semiconductors',
+      description: 'Why data movement is becoming a major AI computing bottleneck.',
+      url: 'https://www.linkedin.com/posts/harini-ga_for-decades-computing-improved-by-making-share-7515363292744224768-aHqS/'
+    },
+    {
+      title: "Short Trends in India's Power Equipment Industry",
+      category: 'Power Infrastructure',
+      description: 'HVDC Infra Bottleneck and Low Loss Distribution',
+      url: 'https://www.linkedin.com/posts/harini-ga_indias-power-equipment-industry-is-seeing-share-7516733084688605184-eU4U/'
+    }
+  ];
+
+  const categoryList = document.getElementById('categoryList');
+  const categoryTitle = document.getElementById('currentCategory');
+  const counter = document.getElementById('currentCount');
+
+  function render(category) {
+    const selected = category === 'All writing'
+      ? posts
+      : posts.filter(post => post.category === category);
+
+    if (categoryTitle) categoryTitle.textContent = category;
+    if (counter) counter.textContent =
+      String(selected.length).padStart(2, '0') +
+      (selected.length === 1 ? ' POST' : ' POSTS');
+
+    list.replaceChildren();
+
+    selected.forEach(post => {
+      const card = document.createElement('a');
+      card.className = 'post-item';
+      card.href = post.url;
+      card.target = '_blank';
+      card.rel = 'noopener noreferrer';
+
+      const art = document.createElement('div');
+      art.className = 'post-art';
+
+      const copy = document.createElement('div');
+      copy.className = 'post-copy';
+
+      for (const [tag, className, value] of [
+        ['span', 'post-meta', 'LinkedIn post / ' + post.category],
+        ['h4', 'post-title', post.title],
+        ['p', 'post-description', post.description]
+      ]) {
+        const el = document.createElement(tag);
+        el.className = className;
+        el.textContent = value;
+        copy.appendChild(el);
+      }
+
+      const arrow = document.createElement('span');
+      arrow.className = 'post-open';
+      arrow.textContent = '↗';
+
+      card.append(art, copy, arrow);
+      list.appendChild(card);
+    });
+  }
+
+  if (categoryList) {
+    categoryList.replaceChildren();
+    ['All writing', ...new Set(posts.map(p => p.category))]
+      .forEach(category => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'cat-item';
+        button.textContent = category;
+        button.addEventListener('click', () => render(category));
+        categoryList.appendChild(button);
+      });
+  }
+
+  render('All writing');
+});
+</script>
+
 </body>
 </html>
