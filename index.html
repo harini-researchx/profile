@@ -643,6 +643,15 @@ a, a *, button, button *, [role="button"], [role="link"],
 /* Lightweight map preview: no embedded Google UI, blue badges or network errors. */
 .mosaic-location .chennai-map-preview{display:block;width:100%;height:100%;position:absolute;inset:0;object-fit:cover;filter:none;}
 .mosaic-location:hover .chennai-map-preview{filter:contrast(1.015);}
+  
+/* Fix sections remaining invisible below the hero */
+.reveal,
+.reveal.visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
 </style>
 </head>
 <body>
