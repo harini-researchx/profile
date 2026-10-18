@@ -931,5 +931,62 @@ if (window.matchMedia('(hover:hover) and (pointer:fine) and (prefers-reduced-mot
 }
 
 </script>
+
+<script>
+(function restorePageSections() {
+  function restore() {
+    document.querySelectorAll('main > section:not(.hero)').forEach(section => {
+      section.style.setProperty('display', 'block', 'important');
+      section.style.setProperty('height', 'auto', 'important');
+      section.style.setProperty('max-height', 'none', 'important');
+      section.style.setProperty('overflow', 'visible', 'important');
+      section.style.setProperty('opacity', '1', 'important');
+      section.style.setProperty('visibility', 'visible', 'important');
+    });
+
+    document.querySelectorAll('.reveal').forEach(element => {
+      element.classList.add('visible');
+      element.style.setProperty('opacity', '1', 'important');
+      element.style.setProperty('visibility', 'visible', 'important');
+      element.style.setProperty('transform', 'none', 'important');
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', restore);
+  } else {
+    restore();
+  }
+})();
+</script>
+
+<script>
+(function restorePageSections() {
+  function restore() {
+    document.querySelectorAll('main > section:not(.hero)').forEach(section => {
+      section.style.setProperty('display', 'block', 'important');
+      section.style.setProperty('height', 'auto', 'important');
+      section.style.setProperty('max-height', 'none', 'important');
+      section.style.setProperty('overflow', 'visible', 'important');
+      section.style.setProperty('opacity', '1', 'important');
+      section.style.setProperty('visibility', 'visible', 'important');
+    });
+
+    document.querySelectorAll('.reveal').forEach(element => {
+      element.classList.add('visible');
+      element.style.setProperty('opacity', '1', 'important');
+      element.style.setProperty('visibility', 'visible', 'important');
+      element.style.setProperty('transform', 'none', 'important');
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', restore);
+  } else {
+    restore();
+  }
+})();
+</script>
+
 </body>
 </html>
